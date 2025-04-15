@@ -1,10 +1,11 @@
 <script setup>
 import { useEndPoints } from '@/composables/useEndPoints'
-import { useFetch } from '@/composables/useFetch'
+import { useFetchWatch } from '@/composables/useFetchWatch'
 
 const { env, apiBase } = useEndPoints()
 
-const { data, error, loading } = useFetch(() => `${apiBase.value}/api/view/configServer`)
+const { data, error, loading } = useFetchWatch(() => `${apiBase.value}/api/view/configServer`)
+
 </script>
 
 <template>
@@ -12,8 +13,8 @@ const { data, error, loading } = useFetch(() => `${apiBase.value}/api/view/confi
     <div class="card-body">
       <h2 class="card-title">{{ env }}</h2>
       <div>
-        <textarea class="textarea" rows="15" cols="50" v-if="data">{{ data }} </textarea>
-        <span v-else-if="loading" class="loading loading-dots loading-xs"></span>
+        <span v-if="loading" class="loading loading-dots loading-xs"></span>
+        <textarea v-if="data" class="textarea" rows="15" cols="50">{{ data }} </textarea>        
         <div v-else>{{ error }}</div>
       </div>
     </div>

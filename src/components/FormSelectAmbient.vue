@@ -14,11 +14,11 @@ for (const key in endPoints) {
     console.log(element)
   }
 }
-
 watch(picked, async () => {
   console.log('set', picked.value)
   setEndPoint(picked.value)
 })
+
 </script>
 
 <template>

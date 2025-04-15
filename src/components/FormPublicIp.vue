@@ -1,6 +1,5 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import { useFetch } from '../composables/useFetch.js'
 
 const pipUrl = ref('https://josrferreyr-apiserverde-79.deno.dev/')
 //const { data, error } = useFetch(pipUrl)

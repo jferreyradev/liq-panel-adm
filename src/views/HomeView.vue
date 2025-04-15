@@ -2,6 +2,8 @@
 import FormPublicIp from '../components/FormPublicIp.vue'
 import FormSelectAmbient from '@/components/FormSelectAmbient.vue'
 import FormData from '@/components/FormData.vue'
+import FormChecker from '@/components/FormChecker.vue'
+
 </script>
 
 <template>
@@ -11,6 +13,9 @@ import FormData from '@/components/FormData.vue'
       <FormPublicIp></FormPublicIp>
       <FormSelectAmbient></FormSelectAmbient>
       <FormData></FormData>
+    </div>
+    <div>
+      <FormChecker></FormChecker>
     </div>
   </main>
 </template>
