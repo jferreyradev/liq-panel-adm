@@ -37,7 +37,7 @@ onMounted(() => {
     <table class="table" v-if="data">
       <thead>
         <tr>
-          <th scope="col">Entidad</th>
+          <th scope="col">Servicio</th>
           <th scope="col">IP pública</th>
           <th scope="col">Ultima actualización</th>
           <th>Estado</th>
@@ -53,7 +53,7 @@ onMounted(() => {
       </tbody>
       <tfoot>
         <tr>
-          <th scope="row" colspan="3">Entidades</th>
+          <th scope="row" colspan="3">Servicios</th>
           <td>3</td>
         </tr>
       </tfoot>

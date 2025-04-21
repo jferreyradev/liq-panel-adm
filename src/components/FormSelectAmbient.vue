@@ -18,13 +18,12 @@ watch(picked, async () => {
   console.log('set', picked.value)
   setEndPoint(picked.value)
 })
-
 </script>
 
 <template>
-  <div class="flex items-center">
+  <div>
     <div v-if="endPoints">
-      <div v-for="ep in endPoints" :key="ep">
+      <div class="flex justify-start" v-for="ep in endPoints" :key="ep">
         <input class="radio" type="radio" :id="ep" :value="ep" v-model="picked" />
         <label class="label" :for="ep">{{ ep.titulo }}</label>
       </div>
