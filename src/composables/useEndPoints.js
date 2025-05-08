@@ -1,25 +1,7 @@
 import { ref } from 'vue'
+import endPoints from "../endPoints.json";
 
-const endPoints = {
-  desarrollo: {
-    titulo: 'Desarrollo',
-    boletas: 'https://api-boletas-9jn3t0ca7a3j.deno.dev',
-    base: 'https://midliq-api-hdprsd64qb7n.deno.dev',
-    sp: 'https://josrferreyr-deno-api-su-79--desarrollo.deno.dev',
-  },
-  prodConcepcion: {
-    titulo: 'Concepción',
-    boletas: 'https://api-boletas.deno.dev',
-    base: 'https://midliq-api.deno.dev', //'https://midliq-api-yr8qdhkr86sq.deno.dev',
-    sp: 'https://josrferreyr-deno-api-su-79.deno.dev',
-  },
-  prodTafiViejo: {
-    titulo: 'Tafi Viejo',
-    boletas: 'https://dno-mid-tafiviejo-boletas.deno.dev',
-    base: 'https://dno-mid-tafiviejo.deno.dev',
-    sp: 'https://dno-mid-tafiviejo-boletas.deno.dev',
-  },
-}
+console.log(endPoints)
 
 const apiBoletas = ref()
 const apiBase = ref()
@@ -35,12 +17,16 @@ export function useEndPoints() {
     env.value = ep.titulo
   }
 
+  function getArrayEnv() {
+    return Object.keys(endPoints)
+  }
+
   return {
     apiBase,
     apiBoletas,
     apiSp,
     setEndPoint,
     env,
-    endPoints,
+    endPoints, getArrayEnv
   }
 }
