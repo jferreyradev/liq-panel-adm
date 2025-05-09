@@ -45,6 +45,7 @@ async function setClipboard(text) {
     await navigator.clipboard.write([clipboardItem])
   }
 }
+
 </script>
 
 <template>
