@@ -1,5 +1,5 @@
 <script setup>
-import { useFetch, useFetchCache } from '@/composables/useFetch'
+import { useFetch, useFetchCache, useFetchWatch, useFetchBatchCache } from '@/composables/useFetch'
 import { onMounted, ref } from 'vue'
 import { useEndPoints } from '@/composables/useEndPoints'
 import IconCopy from './icons/IconCopy.vue'
@@ -8,11 +8,16 @@ import BaseTable from './BaseTable.vue'
 
 const { endPoints } = useEndPoints()
 
-const { data, loading, error, setActive } = useFetchCache('ip', endPoints.publicIp.url, {
-  active: false,
-})
 
-//const { data, loading, error } = useFetch(endPoints.publicIp.url, {})
+//const { data, loading, error, setActive } = useFetchCache('ip', endPoints.publicIp.url, {})
+
+//const { data, loading, error } = useFetchBatchCache('ip', endPoints.publicIp.url, {})
+
+const { data, loading, error, myFetch } = useFetch(endPoints.publicIp.url, {skip:false, cache:true, id:'ip'})
+
+//const { data, loading, error, myFetch } = useFetchBatch(endPoints.publicIp.url, {})
+
+//const { data, loading, error } = useFetchWatch(endPoints.publicIp.url, {})
 
 async function setClipboard(text) {
   if (text) {
@@ -30,7 +35,7 @@ async function setClipboard(text) {
 
 <template>
   <h2>Ip Publicas</h2>
-  <button class="btn" @click="setActive()">load</button>
+  <button class="btn" @click="myFetch()">load</button>
 
   <ul>
     <li v-for="item in data" :key="item.key">
