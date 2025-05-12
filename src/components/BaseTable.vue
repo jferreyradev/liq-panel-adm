@@ -10,7 +10,6 @@ const props = defineProps({
 const emit = defineEmits(['handleClick'])
 
 function handleClick(el) {
-  //console.log(el)
   emit('handleClick', el)
 }
 </script>

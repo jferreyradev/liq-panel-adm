@@ -20,6 +20,8 @@ export function useFetchWatch(url) {
       //await timeout()
       // unref() will return the ref value if it's a ref
       // otherwise the value will be returned as-is
+
+      console.log('fetch to: ', urlValue)
       const res = await fetch(urlValue)
       data.value = await res.json()
     } catch (e) {
