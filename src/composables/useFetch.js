@@ -3,25 +3,35 @@ import { ref, computed, watchEffect, toValue } from 'vue'
 
 const cacheMap = ref(new Map())
 
-export function useFetch(url, options = {}) {
+const skipMap = ref(new Map())
+
+export function useFetch(url, options = {}, conf = {}) {
   const data = ref(null)
   const error = ref(null)
   const loading = ref(null)
+  const skip = ref(null)
   //const data = computed(() => cacheMap.value.get(key))
 
-  async function myFetch() {
+  if ('skip' in conf) {
+    skip.value = skipMap.value.get(conf.id)
+    console.log(skip.value)
+    if (skip.value == null) skip.value = conf.skip
+  }
 
+  console.log(skip.value)
+
+  async function myFetch() {
     loading.value = true
     try {
-      if (options.cache) data.value = cacheMap.value.get(options.id)
+      if (conf.cache) data.value = cacheMap.value.get(conf.id)
 
-      if (data.value == null) {
+      if (!data.value) {
         console.log('fetch to: ', url)
         const resp = await fetch(url, { ...options })
         data.value = await resp.json()
         console.log(data.value)
       }
-      if (options.cache && data.value != null) cacheMap.value.set(options.id, data.value)
+      if (conf.cache && data.value) cacheMap.value.set(conf.id, data.value)
     } catch (err) {
       error.value = err
     } finally {
@@ -30,7 +40,11 @@ export function useFetch(url, options = {}) {
     }
   }
 
-  if (!options.skip) myFetch()
+  if (!skip.value) {
+    myFetch()
+  } else {
+    skipMap.value.set(conf.id, false)
+  }
 
   return { data, loading, error, myFetch }
 }

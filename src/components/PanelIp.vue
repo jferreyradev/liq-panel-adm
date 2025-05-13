@@ -8,12 +8,15 @@ import BaseTable from './BaseTable.vue'
 
 const { endPoints } = useEndPoints()
 
-
 //const { data, loading, error, setActive } = useFetchCache('ip', endPoints.publicIp.url, {})
 
 //const { data, loading, error } = useFetchBatchCache('ip', endPoints.publicIp.url, {})
 
-const { data, loading, error, myFetch } = useFetch(endPoints.publicIp.url, {skip:false, cache:true, id:'ip'})
+const { data, loading, error, myFetch } = useFetch(
+  endPoints.publicIp.url,
+  {},
+  { skip: true, cache: false, id: 'ip' },
+)
 
 //const { data, loading, error, myFetch } = useFetchBatch(endPoints.publicIp.url, {})
 
